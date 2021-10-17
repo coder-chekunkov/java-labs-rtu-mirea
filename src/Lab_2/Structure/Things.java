@@ -1,2 +1,5 @@
-package Lab_2.Structure;public class Things {
+package Lab_2.Structure;
+
+public class Things extends GameObject{
+    public int damage;
 }

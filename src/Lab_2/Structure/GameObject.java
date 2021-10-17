@@ -1,4 +1,4 @@
-package Lab_2;
+package Lab_2.Structure;
 
 public class GameObject {
     public String name;

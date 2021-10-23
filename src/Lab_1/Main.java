@@ -10,7 +10,6 @@ public class Main {
     static ArrayList<Enemy> masEnemy = new ArrayList<>();
     static ArrayList<Weapon> masWeapon = new ArrayList<>();
 
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Введите уровень игрока: ");
@@ -21,12 +20,12 @@ public class Main {
         Person.isNormalWeapon(level_person, level_weapon);
 
         System.out.println(" ");
-        System.out.println("--------------------------------");
+        System.out.println("-------------------------------");
         System.out.println(" ");
         makeEnemy();
         showHeroes();
         System.out.println(" ");
-        System.out.println("--------------------------------");
+        System.out.println("-------------------------------");
         System.out.println(" ");
         makeWeapons();
         showWeapons();

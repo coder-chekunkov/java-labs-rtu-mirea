@@ -6,10 +6,15 @@ import java.util.Random;
 public class Main {
 
     static ArrayList<Creature> masCreature = new ArrayList<>();
+    static CreateField createField = new CreateField();
 
     public static void main(String[] args) {
         makeCreature();
         showHeroes();
+        System.out.println(" ");
+        System.out.println("-------------------------");
+        System.out.println(" ");
+        CreateField.makeFields();
     }
 
     //Метод, в котором создается 10 существ:

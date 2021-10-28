@@ -20,12 +20,12 @@ public class Main {
         Person.isNormalWeapon(level_person, level_weapon);
 
         System.out.println(" ");
-        System.out.println("-------------------------------");
+        System.out.println("------------------------------");
         System.out.println(" ");
         makeEnemy();
         showHeroes();
         System.out.println(" ");
-        System.out.println("-------------------------------");
+        System.out.println("------------------------------");
         System.out.println(" ");
         makeWeapons();
         showWeapons();

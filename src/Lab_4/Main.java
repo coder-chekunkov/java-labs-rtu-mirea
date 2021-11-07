@@ -5,13 +5,21 @@ import java.util.ArrayList;
 public class Main {
 
     static ArrayList<Worker> masWorkers = new ArrayList<>();
+    static WorkWithWorkers workWithWorkers = new WorkWithWorkers(masWorkers);
 
     public static void main(String[] args) {
-        System.out.println(" ");
         System.out.println("-------------------------");
         System.out.println(" ");
+        System.out.println("Штат сотрудников компании: ");
         createWorkers();
         showWorkers();
+        WorkWithWorkers.getMaxSalary();
+        WorkWithWorkers.getMinSalary();
+        WorkWithWorkers.getWorkersForAgeAndCatsLess50();
+        WorkWithWorkers.getWorkersForAgeAndCatsMore50();
+        WorkWithWorkers.getWorkerWithHugePay();
+        WorkWithWorkers.getTableOfDepartment();
+
     }
 
     public static void createWorkers() {
@@ -21,18 +29,19 @@ public class Main {
                 "Бойко", "Дурново", "Гама", "Леонкавалло", "Пуччини", "Вальх", "Кодай"};
         String[] namesOfCats = {"Барсик", "Цунами", "Клеопатра", "Наоми", "Маркиза", "Пират", "Зорро",
                 "Валли", "Каспер", "Том", "Гарфилд"};
-        String[] namesOfDepartments = {"Разработка", "Финансовый отдел", "Бухгалтерия", "Отдел Рекламы",
-                "Отдел набора кадров"};
+        String[] namesOfDepartments = {"Разработка", "Финансовый отдел", "Бухгалтерия", "Отдел Рекламы"};
         String[] positions = {"Junior", "Middle", "Senior"};
 
         for (int i = 0; i < 20; i++) {
+            int numberForId = i + 1;
+
             int numberForFirstName = (int) (Math.random() * firstNames.length);
             String firstName = firstNames[numberForFirstName];
 
             int numberForLastName = (int) (Math.random() * lastNames.length);
             String lastName = lastNames[numberForLastName];
 
-            int age = 20 + (int) (Math.random() * 45);
+            int age = 20 + (int) (Math.random() * 60);
 
             String sex;
             int isSex = (int) (Math.random() * 10);
@@ -45,7 +54,7 @@ public class Main {
             String nameOfCat;
             int isCat = (int) (Math.random() * 10);
             if (isCat % 2 == 0) {
-                nameOfCat = "Отсутсвует";
+                nameOfCat = null;
             } else {
                 int numberForNameOfCat = (int) (Math.random() * namesOfCats.length);
                 nameOfCat = namesOfCats[numberForNameOfCat];
@@ -57,14 +66,14 @@ public class Main {
             int numberForPosition = (int) (Math.random() * positions.length);
             String position = positions[numberForPosition];
 
-            int salary = 60000 + (int) (Math.random() * 350000);
+            int salary = 10000 + (int) (Math.random() * 90000);
 
             int prize = (int) (Math.random() * 15000);
 
             int yearOfWork = 1 + (int) (Math.random() * 5);
 
             Worker new_worker = new Worker(firstName, lastName, sex, nameOfCat, nameOfDepartment,
-                    position, yearOfWork, age, salary, prize);
+                    position, yearOfWork, age, salary, prize, numberForId);
             masWorkers.add(new_worker);
         }
     }
@@ -72,7 +81,6 @@ public class Main {
     public static void showWorkers(){
         for (Worker w: masWorkers) {
             System.out.println(w.toString());
-            System.out.println(" ");
         }
     }
 

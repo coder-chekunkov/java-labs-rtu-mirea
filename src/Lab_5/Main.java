@@ -1,8 +1,6 @@
 package Lab_5;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 
 public class Main {
 
@@ -26,7 +24,7 @@ public class Main {
     }
 
     public static void createWorkers() {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 5; i++) {
             String firstName = AddWorker.getFirstName(i);
             String lastName = AddWorker.getLastName(i);
             int age = AddWorker.getAge(i);

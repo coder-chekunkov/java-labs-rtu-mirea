@@ -23,7 +23,6 @@ public class Main {
         WorkWithWorkers.getWorkerWithCat();
         WorkWithWorkers.getDivideSalary();
 
-
     }
 
     public static void createWorkers() {
@@ -37,7 +36,6 @@ public class Main {
 
             Worker new_worker = new Worker(i, firstName, lastName, age, salary, yearsOfWork, cat);
             masWorkers.add(new_worker);
-
         }
     }
 
@@ -46,6 +44,4 @@ public class Main {
             System.out.println(w.toString());
         }
     }
-
-
 }

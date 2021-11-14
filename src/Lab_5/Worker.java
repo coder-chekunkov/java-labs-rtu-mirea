@@ -10,7 +10,7 @@ public class Worker {
     int yearsOfWork;
     String cat;
 
-    public Worker(int id, String firstName, String lastName, int age, int salary, int yearsOfWork, String cat){
+    public Worker(int id, String firstName, String lastName, int age, int salary, int yearsOfWork, String cat) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -25,11 +25,11 @@ public class Worker {
                 + "; Годы работы: " + yearsOfWork + ";" + " Кот: " + cat + ";";
     }
 
-    public String getCat(){
+    public String getCat() {
         return cat;
     }
 
-    public int getSalary(){
+    public int getSalary() {
         return salary;
     }
 }

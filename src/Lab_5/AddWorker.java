@@ -87,17 +87,16 @@ public class AddWorker {
         return yearsOfWork;
     }
 
-    public static String getCat(int id){
+    public static String getCat(int id) {
         String cat = "";
         int isCat;
         System.out.print("Если у работника № " + id + " есть кот - введите 1, нет - введите 2: ");
         isCat = sc.nextInt();
-        if (isCat == 2){
+        if (isCat == 2) {
             return null;
         } else {
             System.out.print("Введите имя кота: ");
             return sc.next();
         }
     }
-
 }

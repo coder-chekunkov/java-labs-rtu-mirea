@@ -18,16 +18,16 @@ public class Main {
     }
 
     //Метод, в котором создается 10 существ:
-    public static void makeCreature(){
+    public static void makeCreature() {
         String[] names_of_creatures = {"Андрей", "Борис", "Вова", "Глеб", "Дмитрий",
                 "Елена", "Жора", "Зина", "Илья", "Коля"};
         Random rnd = new Random();
         for (int i = 0; i < 10; i++) {
             String name_creatures = names_of_creatures[i];
-            int hp_creatures = rnd.nextInt(15)+1;
-            int damage_creatures = rnd.nextInt(5)+1;
-            int hands_creatures = rnd.nextInt(2)+1;
-            int body_creatures = rnd.nextInt(2)+1;
+            int hp_creatures = rnd.nextInt(15) + 1;
+            int damage_creatures = rnd.nextInt(5) + 1;
+            int hands_creatures = rnd.nextInt(2) + 1;
+            int body_creatures = rnd.nextInt(2) + 1;
             Creature new_creature = new Creature(name_creatures, hp_creatures, damage_creatures, hands_creatures, body_creatures);
             masCreature.add(new_creature);
         }

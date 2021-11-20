@@ -7,7 +7,7 @@ public class CreateField {
     static int[] coordinatesPlayersX = new int[8];
     static int[] coordinatesPlayersY = new int[8];
 
-    static public void makeFields(){
+    static public void makeFields() {
         //Делаем поле пустым:
         for (int i = 0; i < gameField.length; i++) {
             for (int j = 0; j < gameField[i].length; j++) {
@@ -17,8 +17,8 @@ public class CreateField {
 
         //Создаем координаты существ:
         for (int i = 0; i < coordinatesPlayersX.length; i++) {
-            coordinatesPlayersX[i] = (int)(Math.random()*8);
-            coordinatesPlayersY[i] = (int)(Math.random()*8);
+            coordinatesPlayersX[i] = (int) (Math.random() * 8);
+            coordinatesPlayersY[i] = (int) (Math.random() * 8);
 
             for (int j = 0; j < i; j++) {
                 if (coordinatesPlayersX[i] == coordinatesPlayersX[j] && coordinatesPlayersY[i] == coordinatesPlayersY[j]) {

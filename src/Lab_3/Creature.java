@@ -9,7 +9,7 @@ public class Creature {
     int damage;
     ArrayList<Equipment> masEquipment = new ArrayList<>();
 
-    public Creature(String name, int hp, int damage, int hands, int body){
+    public Creature(String name, int hp, int damage, int hands, int body) {
         this.name = name;
         this.hp = hp;
         this.damage = damage;
@@ -18,7 +18,8 @@ public class Creature {
     }
 
     String str = "";
-    public String toString(){
+
+    public String toString() {
         for (Equipment e : masEquipment) {
             str = e.toString();
         }

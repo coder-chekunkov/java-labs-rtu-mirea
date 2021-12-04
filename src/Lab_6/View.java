@@ -26,6 +26,9 @@ public class View {
         System.out.println(BLACK_BOLD + "4." + RESET + " Добавить задачу самостоятельно.");
         System.out.println(BLACK_BOLD + "5." + RESET + " Вывести все задачи.");
         System.out.println(BLACK_BOLD + "6." + RESET + " Вывести задачу с максимальным гонораром.");
+        System.out.println(BLACK_BOLD + "7." + RESET + " Вывести ТОП-3 сотрудников по выполнению заданий.");
+        System.out.println(BLACK_BOLD + "8." + RESET + " Сохранить спиоск сотрудников в файл.");
+        System.out.println(BLACK_BOLD + "9." + RESET + " Сохранить отчет о выполненных заданиях в файл.");
         System.out.print(BLACK_BOLD + "Выберите цифру: " + RESET);
         int number = sc.nextInt();
         switch (number) {
@@ -57,6 +60,16 @@ public class View {
                 showTaskWithMaxFee();
                 menu();
             }
+//            case 7 -> {
+//                menu();
+//            }
+//            case 8 -> {
+//                menu();
+//            }
+//            case 9 -> {
+//
+//                menu();
+//            }
             default -> {
                 System.out.println(RED_BOLD + "Ошибка!" + RESET);
                 menu();

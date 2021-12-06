@@ -40,5 +40,4 @@ public class AddMyself {
 
         return new Task(name, hoursToComplete, info, fee, numberEmployer, status);
     }
-
 }

@@ -24,4 +24,12 @@ public class Employer {
                 BLACK_BOLD + "; Город: " + RESET + nameOfCity +
                 BLACK_BOLD + ";" + RESET;
     }
+
+    public String toTextFile() {
+        return "ФИО: " + FIO +
+                "; " + "Дата рождения: " + birthdayDate +
+                "; Должность: " + position +
+                "; Город: " + nameOfCity +
+                ";";
+    }
 }

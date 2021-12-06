@@ -63,9 +63,10 @@ public class View {
 //            case 7 -> {
 //                menu();
 //            }
-//            case 8 -> {
-//                menu();
-//            }
+            case 8 -> {
+                SaveEmployer.createFileWithEmployers();
+                menu();
+            }
 //            case 9 -> {
 //
 //                menu();

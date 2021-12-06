@@ -41,6 +41,4 @@ public class AddRandom {
 
         return new Employer(FIO, birthdayDate, position, nameOfCity);
     }
-
-
 }

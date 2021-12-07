@@ -27,7 +27,7 @@ public class View {
         System.out.println(BLACK_BOLD + "5." + RESET + " Вывести все задачи.");
         System.out.println(BLACK_BOLD + "6." + RESET + " Вывести задачу с максимальным гонораром.");
         System.out.println(BLACK_BOLD + "7." + RESET + " Вывести ТОП-3 сотрудников по выполнению заданий.");
-        System.out.println(BLACK_BOLD + "8." + RESET + " Сохранить спиоск сотрудников в файл.");
+        System.out.println(BLACK_BOLD + "8." + RESET + " Сохранить список сотрудников в файл.");
         System.out.println(BLACK_BOLD + "9." + RESET + " Сохранить отчет о выполненных заданиях в файл.");
         System.out.print(BLACK_BOLD + "Выберите цифру: " + RESET);
         int number = sc.nextInt();
@@ -36,6 +36,7 @@ public class View {
             case 1 -> {
                 masEmployer.add(AddRandom.setRandomEmployer());
                 System.out.println(GREEN_BOLD + "Сотрудник добавлен!" + RESET);
+                Log.AddLog("add new employer");
                 menu();
             }
             case 2 -> {
@@ -64,6 +65,7 @@ public class View {
 //                menu();
 //            }
             case 8 -> {
+                System.out.println(GREEN_BOLD + "Список сотрудников создан!" + RESET);
                 SaveEmployer.createFileWithEmployers();
                 menu();
             }

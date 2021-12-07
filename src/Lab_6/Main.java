@@ -8,6 +8,10 @@ public class Main {
     public static ArrayList<Task> masTask = new ArrayList<>();
 
     public static void main(String[] args) {
+        AutoSaveLog autoSaveLog = new AutoSaveLog();
+        Thread childTread = new Thread(autoSaveLog);
+        childTread.start();
+        Log.AddLog("start programm");
         View.menu();
     }
 }

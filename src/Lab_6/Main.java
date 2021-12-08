@@ -11,7 +11,8 @@ public class Main {
         AutoSaveLog autoSaveLog = new AutoSaveLog();
         Thread childTread = new Thread(autoSaveLog);
         childTread.start();
-        Log.AddLog("start programm");
+        Log.AddLog("Start Program.");
+
         View.menu();
     }
 }

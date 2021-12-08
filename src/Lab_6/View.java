@@ -36,29 +36,34 @@ public class View {
             case 1 -> {
                 masEmployer.add(AddRandom.setRandomEmployer());
                 System.out.println(GREEN_BOLD + "Сотрудник добавлен!" + RESET);
-                Log.AddLog("add new employer");
+                Log.AddLog("[AddRandom][setRandomEmployer]: Был добавлен сотрудник (рандомно).");
                 menu();
             }
             case 2 -> {
                 masEmployer.add(AddMyself.setMyselfEmployer());
                 System.out.println(GREEN_BOLD + "Сотрудник добавлен!" + RESET);
+                Log.AddLog("[AddMyself][setMyselfEmployer]: Был добавлен сотрудник (самостятельно).");
                 menu();
             }
             case 3 -> {
                 showEmployer();
+                Log.AddLog("[View][showEmployer]: Был создан и выведен на экран список всех сотрудников.");
                 menu();
             }
             case 4 -> {
                 masTask.add(AddMyself.setMySelfTask());
                 System.out.println(GREEN_BOLD + "Задача добавлена!" + RESET);
+                Log.AddLog("[AddMyself][setMyselfTask]: Была добавлена задача (самостоятельно).");
                 menu();
             }
             case 5 -> {
                 showTask();
+                Log.AddLog("[View][showTask]: Был создан список всех задач.");
                 menu();
             }
             case 6 -> {
                 showTaskWithMaxFee();
+                Log.AddLog("[View][showTaskWithMaxFee]: Была найдена и выведена задача с максимальным гонораром.");
                 menu();
             }
 //            case 7 -> {
@@ -67,6 +72,7 @@ public class View {
             case 8 -> {
                 System.out.println(GREEN_BOLD + "Список сотрудников создан!" + RESET);
                 SaveEmployer.createFileWithEmployers();
+                Log.AddLog("[SaveEmployer][createFileWithEmployers]: Был создан и записан в файл список сотрудников.");
                 menu();
             }
 //            case 9 -> {
@@ -75,6 +81,7 @@ public class View {
 //            }
             default -> {
                 System.out.println(RED_BOLD + "Ошибка!" + RESET);
+                Log.AddLog("[View][Menu]: Ошибка. Введено неизвестное число.");
                 menu();
             }
         }

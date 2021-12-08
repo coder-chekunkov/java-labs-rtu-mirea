@@ -9,8 +9,8 @@ import static Lab_6.Main.masEmployer;
 public class SaveEmployer {
 
     public static void createFileWithEmployers() {
-        try (FileWriter logWriter = new FileWriter("employers.txt");
-             BufferedWriter bufferedWriter = new BufferedWriter(logWriter)) {
+        try (FileWriter employerWriter = new FileWriter("employers.txt");
+             BufferedWriter bufferedWriter = new BufferedWriter(employerWriter)) {
             for (Employer e : masEmployer) {
                 String s = e.toTextFile() + "\n";
                 bufferedWriter.write(s);

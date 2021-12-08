@@ -1,6 +1,7 @@
 package Lab_6;
 
 import java.util.Scanner;
+import static Lab_6.Main.*;
 
 public class AddMyself {
 
@@ -9,7 +10,8 @@ public class AddMyself {
 
     static Scanner sc = new Scanner(System.in);
 
-    public static Employer setMyselfEmployer() {
+    public static Employer setMyselfEmployer(int id) {
+        id += 1;
         System.out.print(BLACK_BOLD + "Введите ФИО работника: " + RESET);
         String FIO = sc.nextLine();
         System.out.print(BLACK_BOLD + "Введите дату рождения работника: " + RESET);
@@ -19,10 +21,11 @@ public class AddMyself {
         System.out.print(BLACK_BOLD + "Введите город работника: " + RESET);
         String nameOfCity = sc.nextLine();
 
-        return new Employer(FIO, birthdayDate, position, nameOfCity);
+        return new Employer(id, FIO, birthdayDate, position, nameOfCity);
     }
 
-    public static Task setMySelfTask(){
+    public static Task setMySelfTask(int id){
+        id += 1;
         System.out.print(BLACK_BOLD + "Введите название задачи: " + RESET);
         String name = sc.nextLine();
         System.out.print(BLACK_BOLD + "Введите кол-во часов на выполнение: " + RESET);
@@ -38,6 +41,7 @@ public class AddMyself {
         int numberEmployer = Integer.parseInt(buff_numberEmployer);
         String status = "Открыта";
 
-        return new Task(name, hoursToComplete, info, fee, numberEmployer, status);
+        masEmployer.get(numberEmployer - 1).setTask(id);
+        return new Task(id, name, hoursToComplete, info, fee, numberEmployer, status);
     }
 }

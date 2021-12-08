@@ -3,7 +3,6 @@ package Lab_6;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import static Lab_6.Main.masEmployer;
 
 public class SaveEmployer {

@@ -18,7 +18,9 @@ public class AddRandom {
             "Екатеринбург", "Владивосток", "Хабаровск", "Урюпинск", "Норильск", "Тамбов", "Севастополь"};
 
 
-    public static Employer setRandomEmployer() {
+    public static Employer setRandomEmployer(int id) {
+        id += 1;
+
         int numberForFirstName = (int) (Math.random() * firstNames.length);
         String firstName = firstNames[numberForFirstName];
 
@@ -39,6 +41,6 @@ public class AddRandom {
         int numberForNameOfCities = (int) (Math.random() * nameOfCities.length);
         String nameOfCity = nameOfCities[numberForNameOfCities];
 
-        return new Employer(FIO, birthdayDate, position, nameOfCity);
+        return new Employer(id, FIO, birthdayDate, position, nameOfCity);
     }
 }

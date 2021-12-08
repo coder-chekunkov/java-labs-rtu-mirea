@@ -13,6 +13,10 @@ public class Main {
         childTread.start();
         Log.AddLog("Start Program.");
 
+        Logic logic = new Logic();
+        Thread logicThread = new Thread(logic);
+        logicThread.start();
+
         View.menu();
     }
 }

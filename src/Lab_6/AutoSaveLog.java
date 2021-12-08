@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 public class AutoSaveLog implements Runnable {
     @Override
     public void run() {
-
         while (!Thread.currentThread().isInterrupted()) {
             try (FileWriter logWriter = new FileWriter("log.txt");
                  BufferedWriter bufferedWriterLog = new BufferedWriter(logWriter)) {

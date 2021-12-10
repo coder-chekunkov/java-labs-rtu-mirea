@@ -2,17 +2,19 @@ package Lab_3;
 
 public class Equipment {
 
-    int hands;
-    int body;
+    public static final String RESET = "\033[0m";
+    public static final String BLACK_BOLD = "\033[1;30m";
 
-    public Equipment(int hands, int body) {
-        this.hands = hands;
-        this.body = body;
+    int armor;
+    int weapon;
+
+    public Equipment(int armor, int weapon) {
+        this.armor = armor;
+        this.weapon = weapon;
     }
 
     public String toString() {
-        return "Урон руками: " + hands + "; Защита корпуса: " + body + ";";
+        return BLACK_BOLD + "Броня: " + RESET + armor +
+                BLACK_BOLD + "; Оружие: " + RESET + weapon;
     }
-
 }
-

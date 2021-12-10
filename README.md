@@ -305,6 +305,8 @@ API (аналог LINQ в C#) произвести следующие дейст
 
 ### Лабораторная работа №6. 
   
+Выполнение: :heavy_check_mark:
+  
 <a name="lab_6_task_1">
   
 **Задание 1.**
@@ -347,6 +349,8 @@ API (аналог LINQ в C#) произвести следующие дейст
 назначена (объект класса Employer).
   
 </a>
+  
+:books: [Описание выполнения Лабораторной работы №6.](https://github.com/coder-chekunkov/java-labs-rtu-mirea/wiki/%D0%9B%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F-%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0-%E2%84%96-6.)
   
 :pushpin: [Оглавление.](#contents)
   

@@ -8,9 +8,9 @@ public class Creation {
 
     public static Creature createHero(){
         String buff_name = "@";
-        int buff_hp = 150;
+        int buff_hp = 1500;
         int buff_atk = 20;
-        int buff_armor = 40;
+        int buff_armor = 250;
         int buff_weapon = 15;
         Equipment buff_equipment = new Equipment(buff_armor, buff_weapon);
 
@@ -23,16 +23,16 @@ public class Creation {
                 "Георгий", "Дмитрий", "Елена",
                 "Жора", "Зинаида", "Ирина", "Кирилл"};
         String buff_name = names[i];
-        int buff_hp = 100;
+        int buff_hp = 1000;
         int buff_atk = rnd.nextInt((20) + 1);
-        int buff_armor = rnd.nextInt((50) + 1);
+        int buff_armor = rnd.nextInt((500) + 1);
         int buff_weapon = rnd.nextInt((20) + 1);
         Equipment buff_equipment = new Equipment(buff_armor, buff_weapon);
 
         return new Creature(buff_name, buff_hp, buff_atk, buff_equipment);
     }
 
-    public static char[][] createFields(ArrayList<Creature> creatures, int[][] coordinatesOfHero) {
+    public static char[][] createFields(ArrayList<Creature> creatures) {
         char[][] gameField = new char[10][10];
         int[] coordinatesPlayersX = new int[10];
         int[] coordinatesPlayersY = new int[10];
@@ -41,15 +41,13 @@ public class Creation {
             Arrays.fill(chars, '*');
         }
 
-        gameField[coordinatesOfHero[0][0]][coordinatesOfHero[1][0]] = '@';
-
         for (int i = 0; i < coordinatesPlayersX.length; i++) {
             coordinatesPlayersX[i] = (int) (Math.random() * 10);
             coordinatesPlayersY[i] = (int) (Math.random() * 10);
             for (int j = 0; j < i; j++) {
                 if (coordinatesPlayersX[i] == coordinatesPlayersX[j] &&
                         coordinatesPlayersY[i] == coordinatesPlayersY[j] &&
-                        coordinatesPlayersX[i] == 1 && coordinatesPlayersY[i] == 1) {
+                        coordinatesPlayersX[i] == 0 && coordinatesPlayersY[i] == 0) {
                     i--;
                     break;
                 }

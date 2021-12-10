@@ -19,15 +19,38 @@ public class Creature {
         this.equipment.add(equipment);
     }
 
+    public void setHp(int hp){
+        this.hp = hp;
+    }
+
     public String toString() {
         return BLACK_BOLD + "Название существа: " + RESET + name +
                 BLACK_BOLD + "; Здоровье: " + RESET + hp +
                 BLACK_BOLD + "; Атака: " + RESET + atk +
-                BLACK_BOLD + "; Экипировка: " + RESET + equipment.toString() + " ;";
+                BLACK_BOLD + "; Экипировка: " + RESET + equipment.toString() +
+                BLACK_BOLD + ";" + RESET;
+    }
+
+    public String getInfoHero(){
+        return BLACK_BOLD + "Здоровье: " + RESET + hp +
+                BLACK_BOLD + "; Атака: " + RESET + atk +
+                BLACK_BOLD + "; Экипировка: " + RESET + equipment.toString() +
+                BLACK_BOLD + ";" + RESET;
     }
 
     public String getName() {
         return name;
     }
 
+    public int getAtk(){
+        return atk;
+    }
+
+    public int getHp(){
+        return hp;
+    }
+
+    public ArrayList<Equipment> getEquipment(){
+        return equipment;
+    }
 }

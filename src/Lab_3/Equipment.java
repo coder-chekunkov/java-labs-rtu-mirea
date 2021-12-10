@@ -15,6 +15,11 @@ public class Equipment {
 
     public String toString() {
         return BLACK_BOLD + "Броня: " + RESET + armor +
-                BLACK_BOLD + "; Оружие: " + RESET + weapon;
+                BLACK_BOLD + "; Оружие: " + RESET + weapon +
+                BLACK_BOLD + ";" + RESET;
+    }
+
+    public int getWeapon(){
+        return weapon;
     }
 }

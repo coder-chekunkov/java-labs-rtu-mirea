@@ -5,14 +5,15 @@ import java.util.ArrayList;
 public class Main {
 
     public static final String RESET = "\033[0m";
-    public static final String BLACK_BOLD = "\033[1;30m";
     public static final String GREEN_BOLD = "\033[1;32m";
     public static final String RED_BOLD = "\033[1;31m";
 
     static ArrayList<Creature> creatures = new ArrayList<>();
     static char[][] gameField = new char[10][10];
     static Creature hero;
-    static int[][] coordinatesOfHero = {{0}, {0}};
+    static int coordinatesOfHeroX = 0;
+    static int coordinatesOfHeroY = 0;
+
 
     public static void main(String[] args) {
         showSpace();
@@ -23,8 +24,12 @@ public class Main {
         showHero();
         showCreatures();
         showSpace();
-        gameField = Creation.createFields(creatures, coordinatesOfHero);
+        gameField = Creation.createFields(creatures);
         showField();
+
+        CreatureController creatureController = new CreatureController();
+        Thread childTread = new Thread(creatureController);
+        childTread.start();
 
     }
 
@@ -41,16 +46,20 @@ public class Main {
     }
 
     public static void showField() {
+        char buff =  gameField[coordinatesOfHeroX][coordinatesOfHeroY];
+        gameField[coordinatesOfHeroX][coordinatesOfHeroY] = '@';
+
         for (char[] chars : gameField) {
             for (char aChar : chars) {
                 switch (aChar) {
                     case '*' -> System.out.print(aChar + " ");
                     case '@' -> System.out.print(GREEN_BOLD + aChar + RESET + " ");
-                    default -> System.out.print(BLACK_BOLD + aChar + RESET + " ");
+                    default -> System.out.print(RED_BOLD + aChar + RESET + " ");
                 }
             }
-            System.out.println("");
+            System.out.println(" ");
         }
+        gameField[coordinatesOfHeroX][coordinatesOfHeroY] = buff;
     }
 
     public static void showSpace() {

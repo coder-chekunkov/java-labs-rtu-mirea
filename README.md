@@ -24,7 +24,7 @@
   
 ### Лабораторная работа №1.
   
-Выполнение: :heavy_check_mark:
+:unlock: Выполнение: :heavy_check_mark:
   
 <a name="lab_1_task_1">  
   
@@ -74,7 +74,7 @@
 
 ### Лабораторная работа №2. 
   
-Выполнение: :heavy_check_mark:
+:unlock: Выполнение: :heavy_check_mark:
 
 <a name="lab_2_task_1">  
   
@@ -126,7 +126,7 @@
 
 ### Лабораторная работа №3. 
   
-Выполнение: :heavy_check_mark:
+:unlock: Выполнение: :heavy_check_mark:
 
 <a name="lab_3_task_1">  
   
@@ -207,7 +207,7 @@ Runnable, который содержит в себе объект с ссылк
   
 ### Лабораторная работа №4. 
   
-Выполнение: :heavy_check_mark:
+:unlock: Выполнение: :heavy_check_mark:
   
 <a name="lab_4_task_1">
   
@@ -272,7 +272,7 @@ API (аналог LINQ в C#) произвести следующие дейст
 
 ### Лабораторная работа №5. 
   
-Выполнение: :heavy_check_mark:
+:unlock: Выполнение: :heavy_check_mark:
   
 <a name="lab_5_task_1">
   
@@ -308,7 +308,7 @@ API (аналог LINQ в C#) произвести следующие дейст
 
 ### Лабораторная работа №6. 
   
-Выполнение: :heavy_check_mark:
+:unlock: Выполнение: :heavy_check_mark:
   
 <a name="lab_6_task_1">
   
@@ -365,7 +365,7 @@ API (аналог LINQ в C#) произвести следующие дейст
   
 ### Лабораторная работа №7.
   
-Выполнение: :x:
+:unlock: Выполнение: :x:
   
 **Задание 1.**
   

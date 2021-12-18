@@ -1,23 +1,22 @@
 package Lab_7;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
 
-    public static final String RESET = "\033[0m";
-    public static final String RED_BOLD = "\033[1;31m";
-    public static final String BLACK_BOLD = "\033[1;30m";
-    public static final String GREEN_BOLD = "\033[1;32m";
+    static final String RESET = "\033[0m";
+    static final String RED_BOLD = "\033[1;31m";
+    static final String BLACK_BOLD = "\033[1;30m";
+    static final String GREEN_BOLD = "\033[1;32m";
 
     static ServerSocket serverSocket;
     static Socket clientSocket;
     static BufferedReader in;
+    static BufferedWriter out;
 
-    private static String password = "123456";
+    static String mainPassword = "12345";
 
     public static void main(String[] args) throws IOException {
 
@@ -33,17 +32,37 @@ public class Server {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
         while (true) {
+            out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             String word = in.readLine();
             if (word == null) {
                 System.out.println(RED_BOLD + "Соединение прерванно." + RESET);
                 in.close();
                 return;
             } else {
-                System.out.println(BLACK_BOLD + "GET MESSAGE: " + RESET + word);
+                if (word.charAt(0) == '$') {
+                    if (checkPassword(word)) {
+                        System.out.println(GREEN_BOLD + "Пользователь ввел верный пароль: " + RESET + word + "$");
+                        out.write("1" + "\n");
+                    } else {
+                        System.out.println(RED_BOLD + "Пользователь ввел не верный пароль: " + RESET + word + "$");
+                        out.write("0" + "\n");
+                    }
+                    out.flush();
+                } else {
+                    System.out.println(BLACK_BOLD + "Полученное сообщение: " + RESET + word);
+                }
             }
-
         }
     }
+
+    public static boolean checkPassword(String buff_password) {
+        StringBuilder new_password = new StringBuilder();
+        for (int i = 1; i < buff_password.length(); i++) {
+            new_password.append(buff_password.charAt(i));
+        }
+        return new_password.toString().equals(mainPassword);
+    }
+
 
     public static void showSpace() {
         System.out.println(BLACK_BOLD + "-------------------------" + RESET);

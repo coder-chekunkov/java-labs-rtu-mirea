@@ -1,20 +1,19 @@
 package Lab_7;
 
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
 public class Client {
 
-    public static final String RESET = "\033[0m";
-    public static final String RED_BOLD = "\033[1;31m";
-    public static final String BLACK_BOLD = "\033[1;30m";
-    public static final String GREEN_BOLD = "\033[1;32m";
-    static Scanner sc = new Scanner(System.in);
+    static final String RESET = "\033[0m";
+    static final String RED_BOLD = "\033[1;31m";
+    static final String BLACK_BOLD = "\033[1;30m";
+    static final String GREEN_BOLD = "\033[1;32m";
 
-    private static BufferedWriter out;
+    static Scanner sc = new Scanner(System.in);
+    static BufferedWriter out;
+    static BufferedReader in;
 
     public static void main(String[] args) throws IOException {
 
@@ -23,6 +22,7 @@ public class Client {
 
         while (true) {
             out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
             System.out.println(BLACK_BOLD + "Возможные действия: " + RESET);
             System.out.println(BLACK_BOLD + "0." + RESET + " Отключится от сервера.");
@@ -37,10 +37,21 @@ public class Client {
                     return;
                 }
                 case 1 -> {
-                    System.out.print("Введите сообщение, которое хотели бы отправить на сервер: ");
+                    System.out.print(BLACK_BOLD + "Введите сообщение, которое хотели бы отправить на сервер: " + RESET);
                     String message = sc.next();
                     out.write(message + "\n");
                     out.flush();
+                    showSpace();
+                }
+                case 2 -> {
+                    System.out.print(BLACK_BOLD + "Введите пароль для получения файла: " + RESET);
+                    String password = sc.next();
+                    out.write("$" + password + "\n");
+                    out.flush();
+                    String word = in.readLine();
+                    if (word.equals("1")) System.out.println(GREEN_BOLD + "Пароль верный!" + RESET);
+                    else System.out.println(RED_BOLD + "Пароль не верный!" + RESET);
+                    showSpace();
                 }
                 default -> System.out.println(RED_BOLD + "Ошибка!" + RESET);
             }

@@ -23,6 +23,7 @@ public class Client {
 
         while (true) {
             out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+
             System.out.println(BLACK_BOLD + "Возможные действия: " + RESET);
             System.out.println(BLACK_BOLD + "0." + RESET + " Отключится от сервера.");
             System.out.println(BLACK_BOLD + "1." + RESET + " Отправить сообщение на сервер.");
@@ -40,7 +41,6 @@ public class Client {
                     String message = sc.next();
                     out.write(message + "\n");
                     out.flush();
-                    showSpace();
                 }
                 default -> System.out.println(RED_BOLD + "Ошибка!" + RESET);
             }

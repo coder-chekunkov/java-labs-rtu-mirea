@@ -17,13 +17,15 @@ public class Server {
     static Socket clientSocket;
     static BufferedReader in;
 
+    private static String password = "123456";
+
     public static void main(String[] args) throws IOException {
 
         serverSocket = new ServerSocket(27001);
 
         System.out.println(GREEN_BOLD + "Сервер был запущен!" + RESET);
         showSpace();
-        System.out.println(GREEN_BOLD + "Ожидание подключений..." + RESET);
+        System.out.println(GREEN_BOLD + "Ожидание подключений" + RESET);
         showSpace();
 
         clientSocket = serverSocket.accept();
@@ -33,7 +35,6 @@ public class Server {
         while (true) {
             String word = in.readLine();
             if (word == null) {
-                showSpace();
                 System.out.println(RED_BOLD + "Соединение прерванно." + RESET);
                 in.close();
                 return;

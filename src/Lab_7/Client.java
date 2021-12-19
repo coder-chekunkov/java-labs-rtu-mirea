@@ -49,8 +49,23 @@ public class Client {
                     out.write("$" + password + "\n");
                     out.flush();
                     String word = in.readLine();
-                    if (word.equals("1")) System.out.println(GREEN_BOLD + "Пароль верный!" + RESET);
-                    else System.out.println(RED_BOLD + "Пароль не верный!" + RESET);
+                    if (word.equals("1")) {
+                        System.out.println(GREEN_BOLD + "Пароль верный!" + RESET);
+
+                        String fileTextFromServer = in.readLine();
+                        FileWriter writer = new FileWriter("client_file.txt");
+                        writer.write(fileTextFromServer);
+                        writer.flush();
+
+                        System.out.println("Файл " + GREEN_BOLD + "был получен " + RESET + "с сервера!");
+
+                        System.out.println(RED_BOLD + "Отключение!" + RESET);
+                        out.close();
+                        return;
+                    } else {
+                        System.out.println(RED_BOLD + "Пароль не верный!" + RESET);
+                        System.out.println("Файл " + RED_BOLD + "не был получен " + RESET + "с сервера!");
+                    }
                     showSpace();
                 }
                 default -> System.out.println(RED_BOLD + "Ошибка!" + RESET);

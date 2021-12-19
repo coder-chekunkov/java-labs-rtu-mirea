@@ -14,7 +14,7 @@ public class Server {
     static ServerSocket serverSocket;
     static Socket clientSocket;
     static BufferedReader in;
-    static BufferedWriter out;
+    static PrintWriter out;
 
     static String mainPassword = "12345";
 
@@ -32,7 +32,7 @@ public class Server {
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
         while (true) {
-            out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+            out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
             String word = in.readLine();
             if (word == null) {
                 System.out.println(RED_BOLD + "Соединение прерванно." + RESET);
@@ -42,9 +42,24 @@ public class Server {
                 if (word.charAt(0) == '$') {
                     if (checkPassword(word)) {
                         System.out.println(GREEN_BOLD + "Пользователь ввел верный пароль: " + RESET + word + "$");
-                        out.write("1" + "\n");
+                        out.println("1");
+
+                        StringBuilder textFromFileBuilder = new StringBuilder();
+                        try (FileReader reader = new FileReader("server_file.txt")) {
+                            int c;
+                            while ((c = reader.read()) != -1) {
+                                textFromFileBuilder.append((char) c);
+                            }
+                        }
+                        String textFromFile = String.valueOf(textFromFileBuilder);
+                        System.out.println("Файл " + BLACK_BOLD + "\"server_file.txt\"" + RESET +
+                                GREEN_BOLD + " отправлен" + RESET + " клиенту!");
+                        out.println(textFromFile);
+                        out.flush();
                     } else {
                         System.out.println(RED_BOLD + "Пользователь ввел не верный пароль: " + RESET + word + "$");
+                        System.out.println("Файл " + BLACK_BOLD + "\"server_file.txt\"" + RESET +
+                                RED_BOLD + " не отправлен" + RESET + " клиенту!");
                         out.write("0" + "\n");
                     }
                     out.flush();
@@ -62,7 +77,6 @@ public class Server {
         }
         return new_password.toString().equals(mainPassword);
     }
-
 
     public static void showSpace() {
         System.out.println(BLACK_BOLD + "-------------------------" + RESET);

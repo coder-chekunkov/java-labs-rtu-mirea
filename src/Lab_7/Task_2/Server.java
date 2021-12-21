@@ -11,8 +11,6 @@ class ServerMultithreading extends Thread {
     static final String RESET = "\033[0m";
     static final String RED_BOLD = "\033[1;31m";
     static final String BLUE_BOLD = "\033[1;34m";
-    static final String BLACK_BOLD = "\033[1;30m";
-    static final String GREEN_BOLD = "\033[1;32m";
 
     private final BufferedReader in;
     private final PrintWriter out;
@@ -31,6 +29,9 @@ class ServerMultithreading extends Thread {
                 String word = in.readLine();
                 if (word.equals("%stop%")) {
                     System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + RED_BOLD + "покинул сервер.");
+                    for (ServerMultithreading vr : Server.serverList) {
+                        vr.sendStopMessage(name);
+                    }
                     break;
                 }
                 System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + word);
@@ -41,6 +42,13 @@ class ServerMultithreading extends Thread {
         } catch (IOException ignored) {
             System.out.println(RED_BOLD + "Ошибка!" + RESET);
         }
+    }
+
+    private void sendStopMessage(String name){
+        out.println(name);
+        out.flush();
+        out.println("%stop%");
+        out.flush();
     }
 
     private void sendMessage(String msg, String name) {
@@ -81,7 +89,6 @@ public class Server {
             nameList.add(name);
             serverList.add(new ServerMultithreading(clientSocket));
         }
-
     }
 
     public static void showSpace() {

@@ -4,11 +4,100 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Sender {
+class SenderWriteMessage extends Thread {
 
     static final String RESET = "\033[0m";
     static final String RED_BOLD = "\033[1;31m";
     static final String BLUE_BOLD = "\033[1;34m";
+    static final String BLACK_BOLD = "\033[1;30m";
+
+    static Scanner sc = new Scanner(System.in);
+    static PrintWriter out;
+    static String name;
+
+    public SenderWriteMessage(PrintWriter out, Scanner sc, String name) {
+        SenderWriteMessage.out = out;
+        SenderWriteMessage.sc = sc;
+        SenderWriteMessage.name = name;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            String message = enterMessage();
+            out.println(name);
+            out.flush();
+            if (message.equals("%stop%")) {
+                out.println(message);
+                out.flush();
+                System.out.println("Клиент " + BLACK_BOLD + name + RESET + RED_BOLD + " покинул сервер!" + RESET);
+                out.close();
+                break;
+            }
+            out.println(message);
+            out.flush();
+        }
+    }
+
+    public static String enterMessage() {
+        System.out.print(BLUE_BOLD + name + RESET + ": ");
+        return sc.nextLine();
+    }
+}
+
+class SenderGetMessage extends Thread {
+
+    static final String RESET = "\033[0m";
+    static final String BLACK_BOLD = "\033[1;30m";
+    static final String BLUE_BOLD = "\033[1;34m";
+
+    static BufferedReader in;
+    static String myName;
+
+    public SenderGetMessage(BufferedReader in, String name){
+        SenderGetMessage.in = in;
+        SenderGetMessage.myName = name;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+            String name = null;
+            String word = null;
+            try {
+                name = in.readLine();
+                word = in.readLine();
+            } catch (IOException ignored) {
+            }
+            if (name != null && word != null){
+                if (name.equals(myName) && word.equals("%stop%")){
+                    interrupt();
+                    break;
+                } else {
+                    if (name.equals(myName)){
+                        System.out.println(BLACK_BOLD + "%" + name + "%: " + RESET + word);
+                    } else {
+                        System.out.println("\n" + BLACK_BOLD + "%" + name + "%: " + RESET + word);
+                        System.out.print(BLUE_BOLD + myName + RESET + ": ");
+                    }
+                }
+            } else {
+                interrupt();
+                break;
+            }
+        }
+    }
+}
+
+public class Sender {
+
+    static final String RESET = "\033[0m";
+    static final String RED_BOLD = "\033[1;31m";
     static final String BLACK_BOLD = "\033[1;30m";
     static final String GREEN_BOLD = "\033[1;32m";
 
@@ -41,29 +130,10 @@ public class Sender {
                 "данный сервер - введите " + RED_BOLD + "%stop%" + RESET);
         showSpace();
 
-        while (true) {
-            String message = enterMessage();
-            out.println(name);
-            out.flush();
-            if (message.equals("%stop%")){
-                out.println(message);
-                out.flush();
-                System.out.println("Клиент " + BLACK_BOLD + name + RESET + RED_BOLD + " покинул сервер!" + RESET);
-                out.close();
-                return;
-            }
-            out.println(message);
-            out.flush();
-
-            String name = in.readLine();
-            String word = in.readLine();
-            System.out.println(BLACK_BOLD + "%" + name + "%: " + RESET + word);
-        }
-    }
-
-    public static String enterMessage() {
-        System.out.print(BLUE_BOLD + name + RESET + ": ");
-        return sc.nextLine();
+        SenderGetMessage senderGetMessage = new SenderGetMessage(in, name);
+        SenderWriteMessage senderWriteMessage = new SenderWriteMessage(out, sc, name);
+        senderWriteMessage.start();
+        senderGetMessage.start();
     }
 
     public static void showSpace() {

@@ -1,4 +1,4 @@
-package Lab_7;
+package Lab_7.Task_1;
 
 import java.io.*;
 import java.net.Socket;

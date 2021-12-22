@@ -2,6 +2,7 @@ package Lab_7.Task_2;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class ReceiverWriteMessage extends Thread {
@@ -10,6 +11,9 @@ class ReceiverWriteMessage extends Thread {
     static final String RED_BOLD = "\033[1;31m";
     static final String BLUE_BOLD = "\033[1;34m";
     static final String BLACK_BOLD = "\033[1;30m";
+    static final String GREEN_BOLD = "\033[1;32m";
+
+    static ArrayList<Cat> cats = new ArrayList<>();
 
     static Scanner sc = new Scanner(System.in);
     static PrintWriter out;
@@ -39,6 +43,21 @@ class ReceiverWriteMessage extends Thread {
                 out.close();
                 break;
             }
+
+            if (message.equals("%create_cat%")) {
+                addCat();
+                System.out.println(BLACK_BOLD + name + RESET + ": " + GREEN_BOLD + "создал " + RESET + "нового кота!");
+            }
+
+            if (message.equals("%show_cats%")) {
+                showCats();
+                System.out.println(BLACK_BOLD + name + RESET + ": " + GREEN_BOLD + "вывел " + RESET + "всех своих котов!");
+            }
+
+            if (message.equals("%send_cat%")) {
+                System.out.println(BLACK_BOLD + name + RESET + ": " + GREEN_BOLD + "отправил " + RESET + "информацию об одном коте!");
+            }
+
             out.println(message);
             out.flush();
         }
@@ -47,6 +66,30 @@ class ReceiverWriteMessage extends Thread {
     public static String enterMessage() {
         System.out.print(BLUE_BOLD + name + RESET + ": ");
         return sc.nextLine();
+    }
+
+    public static void addCat() {
+        Server.showSpace();
+        int id = cats.size() + 1;
+        System.out.print(BLACK_BOLD + "Введите имя кота: " + RESET);
+        String name = sc.nextLine();
+        System.out.print(BLACK_BOLD + "Введите возраст кота: " + RESET);
+        int age = sc.nextInt();
+        System.out.print(BLACK_BOLD + "Введите рост кота: " + RESET);
+        int height = sc.nextInt();
+        System.out.print(BLACK_BOLD + "Введите вес кота: " + RESET);
+        int weight = sc.nextInt();
+        Server.showSpace();
+
+        cats.add(new Cat(id, name, age, height, weight));
+    }
+
+    public static void showCats() {
+        Server.showSpace();
+        for (Cat cat : cats) {
+            System.out.println(cat.toString());
+        }
+        Server.showSpace();
     }
 }
 
@@ -122,13 +165,13 @@ public class Receiver {
         System.out.println("Для того чтобы " + BLACK_BOLD + "отправить пользователям сообщение " + RESET +
                 "- введите текст и нажмите " + BLACK_BOLD + "\"Enter\" ." + RESET);
         System.out.println("Для того чтобы " + BLACK_BOLD + "создать нового кота " + RESET +
-                "- введите " + GREEN_BOLD + "\"%create_cat% ." + RESET);
+                "- введите " + GREEN_BOLD + "\"%create_cat%\"." + RESET);
         System.out.println("Для того чтобы " + BLACK_BOLD + "посмотреть всех котов " + RESET +
-                "- введите " + GREEN_BOLD + "\"%show_cats% ." + RESET);
+                "- введите " + GREEN_BOLD + "\"%show_cats%\"." + RESET);
         System.out.println("Для того чтобы " + BLACK_BOLD + "отправить кота " + RESET +
-                "другим пользователям - введите " + GREEN_BOLD + "\"%send_cat% . " + RESET);
+                "другим пользователям - введите " + GREEN_BOLD + "\"%send_cat%\". " + RESET);
         System.out.println("Для того чтобы " + BLACK_BOLD + "покинуть " + RESET +
-                "данный сервер - введите " + RED_BOLD + "%stop%" + RESET);
+                "данный сервер - введите " + RED_BOLD + "\"%stop%\"" + RESET);
         showSpace();
 
         ReceiverGetMessage getMessage = new ReceiverGetMessage(in, name);

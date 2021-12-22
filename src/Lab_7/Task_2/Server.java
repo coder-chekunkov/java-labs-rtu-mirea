@@ -11,6 +11,7 @@ class ServerMultithreading extends Thread {
     static final String RESET = "\033[0m";
     static final String RED_BOLD = "\033[1;31m";
     static final String BLUE_BOLD = "\033[1;34m";
+    static final String GREEN_BOLD = "\033[1;32m";
 
     private final BufferedReader in;
     private final PrintWriter out;
@@ -27,24 +28,34 @@ class ServerMultithreading extends Thread {
             while (true) {
                 String name = in.readLine();
                 String word = in.readLine();
-                if (word.equals("%stop%")) {
-                    System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + RED_BOLD + "покинул сервер.");
-                    for (ServerMultithreading vr : Server.serverList) {
-                        vr.sendStopMessage(name);
+                if (!word.equals(" ")) {
+                    if (word.equals("%stop%")) {
+                        System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + RED_BOLD + "покинул сервер.");
+                        for (ServerMultithreading vr : Server.serverList) {
+                            vr.sendStopMessage(name);
+                        }
+                        break;
                     }
-                    break;
+                    switch (word) {
+                        case "%create_cat%" -> System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + GREEN_BOLD + "создал" + RESET + " нового кота.");
+                        case "%show_cats%" -> System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + GREEN_BOLD + "вывел" + RESET + " всех своих котов.");
+                        case "%send_cat%" -> System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + GREEN_BOLD + "отправил" + RESET + " другому пользователю кота.");
+                        default -> {
+                            System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + word);
+                            for (ServerMultithreading vr : Server.serverList) {
+                                vr.sendMessage(word, name);
+                            }
+                        }
+                    }
                 }
-                System.out.println(BLUE_BOLD + "%" + name + "%: " + RESET + word);
-                for (ServerMultithreading vr : Server.serverList) {
-                    vr.sendMessage(word, name);
-                }
+
             }
         } catch (IOException ignored) {
             System.out.println(RED_BOLD + "Ошибка!" + RESET);
         }
     }
 
-    private void sendStopMessage(String name){
+    private void sendStopMessage(String name) {
         out.println(name);
         out.flush();
         out.println("%stop%");

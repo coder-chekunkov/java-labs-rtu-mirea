@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.layout.Pane?>
+
+<Scene xmlns:fx="myPets" fx:controller="com.example.lab_8.MainController">
+
+    <Pane prefWidth="800" prefHeight="500">
+
+        <Button fx:id="buttonAddNewPet" text="Добавить питомца."
+                prefHeight="35" prefWidth="150"
+                layoutX="625" layoutY="25"
+                onAction="#onClickMethod"/>
+
+    </Pane>
+</Scene>
+

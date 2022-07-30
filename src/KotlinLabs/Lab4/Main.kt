@@ -1,6 +1,5 @@
 package KotlinLabs.Lab4
 
-import JavaLabs.Lab_1.Person
 import java.util.*;
 import kotlin.collections.ArrayList
 
@@ -16,19 +15,21 @@ fun main() {
     for (i in 1..25) workers.add(createWorker())
     for (worker in workers) println(worker)
 
-    println("\n")
     workWithWorkers(workers)
 }
 
 fun workWithWorkers(workers: ArrayList<Worker>) {
-
+    println("\nMAX SALARY: \n${getWorkerWithMaxSalary(workers)}")
+    println("\nMIN SALARY: \n${getWorkerWithMinSalary(workers)}}")
+    println("\nAGE < 50:")
+    for (i in getWorkersForAge(workers)) println(i)
 }
 
 fun createWorker(): Worker {
     val random = Random()
     val name = "Worker#${random.nextInt(1000 + 1)}"
     val surname = "**surname**"
-    val age = random.nextInt(50 + 1)
+    val age = random.nextInt(100 + 1)
     val sex = random.nextBoolean()
     val nameOfCat = "Cat#${random.nextInt(150 + 1)}"
     val nameOfDepartment = createNameOfDepartment(random.nextInt(10 + 1))
